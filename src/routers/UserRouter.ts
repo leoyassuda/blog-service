@@ -1,5 +1,5 @@
-import { Router } from 'express';
 import UserController from '@controllers/UserController';
+import { Router } from 'express';
 
 const postRouter = Router();
 
@@ -7,9 +7,9 @@ const controller = new UserController();
 
 postRouter.post('/users', controller.create);
 
-postRouter.get('/users', controller.getAll);
+postRouter.get('/users', controller.findAll);
 
-postRouter.get('/users/:id', controller.getById);
+postRouter.get('/users/:id', controller.findById);
 
 postRouter.put('/users/:id', controller.update);
 

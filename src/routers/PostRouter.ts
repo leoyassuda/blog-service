@@ -7,9 +7,9 @@ const postController = new PostController();
 
 postRouter.post('/posts', postController.create);
 
-postRouter.get('/posts', postController.getAll);
+postRouter.get('/posts', postController.findAll);
 
-postRouter.get('/posts/:id', postController.getById);
+postRouter.get('/posts/:id', postController.findById);
 
 postRouter.put('/posts/:id', postController.update);
 

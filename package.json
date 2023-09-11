@@ -12,7 +12,7 @@
     "start": "npm run build && node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/index.js",
     "generate": "npx prisma generate",
     "studio": "npx prisma studio",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

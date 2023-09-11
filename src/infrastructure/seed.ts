@@ -4,20 +4,20 @@ const prisma = new PrismaClient();
 
 const postsData: Prisma.PostCreateInput[] = [
   {
-    text: 'Text test AAA',
+    text: ' Latidos animados para começar o dia! 🌞 Estou pronto para explorar o quintal, farejar algumas coisas interessantes e, claro, correr atrás da minha própria cauda. #VidaDeCachorro #ManhãAnimada',
     user: {
       create: {
-        name: 'Omar',
+        name: 'Dogomar',
         nickname: 'Dogomar',
       },
     },
   },
   {
-    text: 'Text test rouf rouf rouf',
+    text: 'Humano me alimentou com um delicioso petisco hoje! 🍖 Agora, estou deitado ao sol, digerindo e planejando a soneca da tarde. #AlmoçoDoCachorro #VidaBoa',
     user: {
       create: {
-        name: 'Guilherme',
-        nickname: 'DoGui',
+        name: 'Dogui',
+        nickname: 'Dogui',
       },
     },
   },

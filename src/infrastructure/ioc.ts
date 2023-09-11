@@ -38,3 +38,5 @@ container.register('DeletePostUseCase', {
 container.register('PostController', {
   useClass: PostController,
 });
+
+export { container };

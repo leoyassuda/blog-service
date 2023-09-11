@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "ES2017",
     "module": "commonjs",
     "outDir": "./dist",
     "strict": true,
@@ -9,14 +9,20 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "rootDir": "./src",
     "paths": {
-      "@domains/*": ["domains/*"],
-      "@controllers/*": ["controllers/*"],
-      "@repositories/*": ["repositories/*"],
-      "@routers/*": ["routers/*"],
-      "@useCases/*": ["useCases/*"]
+      "@controllers/*": ["src/controllers/*"],
+      "@domains/*": ["src/domains/*"],
+      // "@infra/*": ["src/infrastructure/*"],
+      "@repositories/*": ["src/repositories/*"],
+      "@routers/*": ["src/routers/*"],
+      "@useCases/*": ["src/useCases/*"]
     }
-  }
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

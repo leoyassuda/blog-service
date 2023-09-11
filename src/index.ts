@@ -1,11 +1,12 @@
 import 'module-alias/register';
 import 'reflect-metadata';
-import 'infrastructure/ioc';
+import './infrastructure/ioc';
 import server from './server';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import prisma from 'infrastructure/database';
 import postRouter from '@routers/PostRouter';
+import userRouter from '@routers/UserRouter';
+import prisma from './infrastructure/database';
 
 dotenv.config();
 const PORT = process.env.PORT || 4000;
@@ -21,7 +22,8 @@ const HOST = process.env.HOST || 'http://localhost';
       origin: [`${HOST}:${PORT}`],
     })
   );
-  server.use('/api', postRouter);
+  server.use('/api/posts', postRouter);
+  server.use('/api/users', userRouter);
   server.use((req, res) => {
     res.status(404);
   });

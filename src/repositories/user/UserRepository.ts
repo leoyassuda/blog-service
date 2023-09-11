@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { injectable } from 'tsyringe';
-import prisma from 'infrastructure/database';
+import prisma from 'src/infrastructure/database';
 import User from '@domains/User';
 import IRepository from '@repositories/IRepository';
 

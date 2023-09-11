@@ -44,7 +44,7 @@ class UserController implements IController {
 
   async delete(req: Request, res: Response): Promise<void> {
     const deleteUserUseCase = container.resolve(DeleteUserUseCase);
-    const { id } = req.body;
+    const { id } = req.params;
     await deleteUserUseCase.execute(id);
     res.status(204).send();
   }

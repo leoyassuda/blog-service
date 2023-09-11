@@ -1,14 +1,14 @@
-import Post from '@domains/Post';
+import User from '@domains/User';
 import IRepository from '@repositories/IRepository';
 import { inject, injectable } from 'tsyringe';
 
 @injectable()
-class GetPostByIdUseCase {
-  constructor(@inject('IPostRepository') private postRepository: IRepository<Post>) {}
+class GetUserByIdUseCase {
+  constructor(@inject('IUserRepository') private userRepository: IRepository<User>) {}
 
-  async execute(id: string): Promise<Post | null> {
-    return this.postRepository.findById(id);
+  async execute(id: string): Promise<User | null> {
+    return this.userRepository.findById(id);
   }
 }
 
-export default GetPostByIdUseCase;
+export default GetUserByIdUseCase;

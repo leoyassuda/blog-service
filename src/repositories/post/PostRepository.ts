@@ -1,7 +1,7 @@
 import Post from '@domains/Post';
 import { PrismaClient } from '@prisma/client';
 import { injectable } from 'tsyringe';
-import prisma from 'infrastructure/database';
+import prisma from 'src/infrastructure/database';
 import IRepository from '../IRepository';
 
 @injectable()

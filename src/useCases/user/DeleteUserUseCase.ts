@@ -6,8 +6,8 @@ import { inject, injectable } from 'tsyringe';
 class DeleteUserUseCase {
   constructor(@inject('IUserRepository') private userRepository: IRepository<User>) {}
 
-  async execute(user: User): Promise<void> {
-    await this.userRepository.delete(user.id);
+  async execute(id: string): Promise<void> {
+    await this.userRepository.delete(id);
   }
 }
 

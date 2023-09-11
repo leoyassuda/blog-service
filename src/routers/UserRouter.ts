@@ -5,14 +5,14 @@ const postRouter = Router();
 
 const controller = new UserController();
 
-postRouter.post('/users', controller.create);
+postRouter.post('/', controller.create);
 
-postRouter.get('/users', controller.findAll);
+postRouter.get('/', controller.findAll);
 
-postRouter.get('/users/:id', controller.findById);
+postRouter.get('/:id', controller.findById);
 
-postRouter.put('/users/:id', controller.update);
+postRouter.put('/:id', controller.update);
 
-postRouter.delete('/users/:id', controller.delete);
+postRouter.delete('/:id', controller.delete);
 
 export default postRouter;

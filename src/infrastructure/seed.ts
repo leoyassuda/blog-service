@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 const postsData: Prisma.PostCreateInput[] = [
   {
     text: 'Text test AAA',
-    author: {
+    user: {
       create: {
         name: 'Omar',
         nickname: 'Dogomar',
@@ -14,7 +14,7 @@ const postsData: Prisma.PostCreateInput[] = [
   },
   {
     text: 'Text test rouf rouf rouf',
-    author: {
+    user: {
       create: {
         name: 'Guilherme',
         nickname: 'DoGui',

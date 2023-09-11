@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.8'
 
 services:
   mongo:
@@ -6,6 +6,9 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: pass1234
+      MONGO_INITDB_DATABASE: blog
+      MONGO_REPLICA_HOST: localhost
+      MONGO_REPLICA_PORT: 27017
     networks:
       - blog-network
 
@@ -18,6 +21,8 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: pass1234
       ME_CONFIG_MONGODB_URL: mongodb://root:pass1234@mongo:27017/
+    networks:
+      - blog-network
 networks:
   blog-network:
     driver: bridge

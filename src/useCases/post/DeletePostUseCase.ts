@@ -1,13 +1,13 @@
 import Post from '@domains/Post';
-import IPostRepository from '@repositories/PostRepository';
+import IRepository from '@repositories/IRepository';
 import { inject, injectable } from 'tsyringe';
 
 @injectable()
 class DeletePostUseCase {
-  constructor(@inject('IPostRepository') private postRepository: IPostRepository) {}
+  constructor(@inject('IPostRepository') private postRepository: IRepository<Post>) {}
 
   async execute(post: Post): Promise<void> {
-    await this.postRepository.deletePost(post.id);
+    await this.postRepository.delete(post.id);
   }
 }
 

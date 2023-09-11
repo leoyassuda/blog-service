@@ -1,30 +1,30 @@
 import { Request, Response } from 'express';
-import CreatePostUseCase from '@useCases/CreatePostUseCase';
-import GetPostByIdUseCase from '@useCases/GetPostByIdUseCase';
-import GetAllPostsUseCase from '@useCases/GetAllPostsUseCase';
-import UpdatePostUseCase from '@useCases/UpdatePostUseCase';
-import DeletePostUseCase from '@useCases/DeletePostUseCase';
-import { inject, injectable } from 'tsyringe';
+import { container } from 'tsyringe';
+import CreatePostUseCase from '@useCases/post/CreatePostUseCase';
+import DeletePostUseCase from '@useCases/post/DeletePostUseCase';
+import GetAllPostsUseCase from '@useCases/post/GetAllPostsUseCase';
+import GetPostByIdUseCase from '@useCases/post/GetPostByIdUseCase';
+import UpdatePostUseCase from '@useCases/post/UpdatePostUseCase';
+import { IController } from './IController';
 
-@injectable()
-class PostController {
-  constructor(
-    @inject('CreatePostUseCase') private createPostUseCase: CreatePostUseCase,
-    @inject('GetPostByIdUseCase') private getPostByIdUseCase: GetPostByIdUseCase,
-    @inject('GetAllPostsUseCase') private getAllPostsUseCase: GetAllPostsUseCase,
-    @inject('UpdatePostUseCase') private updatePostUseCase: UpdatePostUseCase,
-    @inject('DeletePostUseCase') private deletePostUseCase: DeletePostUseCase
-  ) {}
+class PostController implements IController {
+  async create(req: Request, res: Response): Promise<void> {
+    const createPostUseCase = container.resolve(CreatePostUseCase);
+    const postRequest = req.body;
+    const post = await createPostUseCase.execute(postRequest);
+    res.json(post);
+  }
 
-  async getAll(req: Request, res: Response) {
-    console.log('>>>> Post Get All Controller');
-    const posts = await this.getAllPostsUseCase.execute();
+  async findAll(req: Request, res: Response): Promise<void> {
+    const getAllPostsUseCase = container.resolve(GetAllPostsUseCase);
+    const posts = await getAllPostsUseCase.execute();
     res.json(posts);
   }
 
-  async getById(req: Request, res: Response) {
+  async findById(req: Request, res: Response): Promise<void> {
+    const getPostByIdUseCase = container.resolve(GetPostByIdUseCase);
     const { id } = req.params;
-    const post = await this.getPostByIdUseCase.execute(id);
+    const post = await getPostByIdUseCase.execute(id);
     if (post) {
       res.json(post);
     } else {
@@ -34,22 +34,18 @@ class PostController {
     }
   }
 
-  async create(req: Request, res: Response) {
-    const postRequest = req.body;
-    const post = await this.createPostUseCase.execute(postRequest);
-    res.json(post);
-  }
-
-  async update(req: Request, res: Response) {
+  async update(req: Request, res: Response): Promise<void> {
+    const updatePostUseCase = container.resolve(UpdatePostUseCase);
     const { id } = req.params;
     const postRequest = req.body;
-    const post = await this.updatePostUseCase.execute(id, postRequest);
+    const post = await updatePostUseCase.execute(id, postRequest);
     res.json(post);
   }
 
-  async delete(req: Request, res: Response) {
+  async delete(req: Request, res: Response): Promise<void> {
+    const deletePostUseCase = container.resolve(DeletePostUseCase);
     const { id } = req.body;
-    await this.deletePostUseCase.execute(id);
+    await deletePostUseCase.execute(id);
     res.status(204).send();
   }
 }

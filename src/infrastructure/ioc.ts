@@ -1,14 +1,15 @@
-import { container } from 'tsyringe';
-import CreatePostUseCase from '@useCases/CreatePostUseCase';
-import GetAllPostsUseCase from '@useCases/GetAllPostsUseCase';
-import GetPostByIdUseCase from '@useCases/GetPostByIdUseCase';
-import UpdatePostUseCase from '@useCases/UpdatePostUseCase';
-import DeletePostUseCase from '@useCases/DeletePostUseCase';
-import PostRepository from '@repositories/PostRepository';
 import PostController from '@controllers/PostController';
-import IPostRepository from '@repositories/IPostRepository';
+import Post from '@domains/Post';
+import IRepository from '@repositories/post/IRepository';
+import PostRepository from '@repositories/post/PostRepository';
+import CreatePostUseCase from '@useCases/post/CreatePostUseCase';
+import DeletePostUseCase from '@useCases/post/DeletePostUseCase';
+import GetAllPostsUseCase from '@useCases/post/GetAllPostsUseCase';
+import GetPostByIdUseCase from '@useCases/post/GetPostByIdUseCase';
+import UpdatePostUseCase from '@useCases/post/UpdatePostUseCase';
+import { container } from 'tsyringe';
 
-container.register<IPostRepository>('IPostRepository', PostRepository);
+container.register<IRepository<Post>>('IPostRepository', PostRepository);
 
 container.register('CreatePostUseCase', {
   useClass: CreatePostUseCase,

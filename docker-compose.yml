@@ -1,28 +1,50 @@
 version: '3.8'
 
 services:
-  mongo:
-    image: mongo
+  mongodb:
+    image: bitnami/mongodb
+    container_name: mongo-server
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: pass1234
-      MONGO_INITDB_DATABASE: blog
-      MONGO_REPLICA_HOST: localhost
-      MONGO_REPLICA_PORT: 27017
+      MONGODB_ADVERTISED_HOSTNAME: 127.0.0.1
+      MONGODB_REPLICA_SET_MODE: primary
+      MONGODB_ROOT_USER: root
+      MONGODB_ROOT_PASSWORD: pass123!
+      MONGODB_REPLICA_SET_KEY: replicasetkey123
+      # MONGO_INITDB_ROOT_USERNAME: root
+      # MONGO_INITDB_ROOT_PASSWORD: pass1234!
+      # MONGO_INITDB_DATABASE: blog
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    # command: --replSet rs0
+    ports:
+      - 27017:27017
+    volumes:
+      - 'mongo-db:/data/mongodb'
     networks:
       - blog-network
 
   mongo-express:
-    depends_on: [mongo]
     image: mongo-express
     ports:
-      - 8081:8081
+      - '8081:8081'
     environment:
+      ME_CONFIG_MONGODB_SERVER: mongo-server
+      ME_CONFIG_MONGODB_PORT: 27017
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: pass1234
-      ME_CONFIG_MONGODB_URL: mongodb://root:pass1234@mongo:27017/
+      ME_CONFIG_MONGODB_ADMINPASSWORD: pass123!
+    depends_on:
+      mongodb:
+        condition: service_healthy
     networks:
       - blog-network
+
 networks:
   blog-network:
     driver: bridge
+
+volumes:
+  mongo-db:

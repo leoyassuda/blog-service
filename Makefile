@@ -1,12 +1,12 @@
+include .env
 DOCKER_IMAGE_NAME = blog-service
 DOCKER_CONTAINER_NAME = blog-service-node-container
-DATABASE_URL = ""
 
 build:
-	docker build --build-arg DATABASE_URL=$(DATABASE_URL) -t $(DOCKER_IMAGE_NAME) .
+	docker build --build-arg DATABASE_URL=$(DATABASE_URL) --build-arg PORT=$(PORT) -t $(DOCKER_IMAGE_NAME) .
 
 start:
-	docker run -p 3000:3000 --name $(DOCKER_CONTAINER_NAME) -e NODE_ENV=production -e DATABASE_URL=$(DATABASE_URL) $(DOCKER_IMAGE_NAME)
+	docker run -p $(PORT):$(PORT) -e PORT=$(PORT) -e NODE_ENV=production -e DATABASE_URL=$(DATABASE_URL)  --network blog-service_blog-network --rm $(DOCKER_IMAGE_NAME)
 
 stop:
 	docker stop $(DOCKER_CONTAINER_NAME)

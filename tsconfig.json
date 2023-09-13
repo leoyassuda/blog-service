@@ -9,12 +9,14 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "Node",
     "baseUrl": ".",
     "rootDir": "./src",
     "paths": {
       "@controllers/*": ["src/controllers/*"],
       "@domains/*": ["src/domains/*"],
-      // "@infra/*": ["src/infrastructure/*"],
+      "@infra/*": ["src/infrastructure/*"],
       "@repositories/*": ["src/repositories/*"],
       "@routers/*": ["src/routers/*"],
       "@useCases/*": ["src/useCases/*"]
@@ -23,6 +25,6 @@
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "include": ["./src/**/*"],
+  "exclude": ["**/*.spec.ts"]
 }

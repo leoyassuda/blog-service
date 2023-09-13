@@ -8,19 +8,17 @@
     "watch": "nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node -r tsconfig-paths/register ./src/index.ts\"",
     "dev": "npm run generate && ts-node -r tsconfig-paths/register ./src/index.ts",
     "clean": "rimraf ./dist",
-    "build": "npm run clean && tsc",
-    "start": "npm run build && node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/index.js",
+    "build": "tsc -p .",
+    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/index.js",
+    "start:prod": "TS_NODE_BASEURL=./dist node -r ts-node/register -r tsconfig-paths/register ./dist/index.js",
     "generate": "npx prisma generate",
     "studio": "npx prisma studio",
     "test": "jest"
   },
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
-  },
   "author": "Leo Yassuda",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^5.2.0",
+    "@prisma/client": "^5.3.0",
     "@types/cors": "^2.8.14",
     "@types/express": "^4.17.17",
     "@types/node": "^20.5.9",
@@ -36,7 +34,7 @@
     "@types/module-alias": "^2.0.2",
     "@types/uuid": "^9.0.3",
     "nodemon": "^3.0.1",
-    "prisma": "^5.2.0",
+    "prisma": "^5.3.0",
     "prisma-erd-generator-markdown": "^1.3.1",
     "rimraf": "^5.0.1",
     "ts-node": "^10.9.1",

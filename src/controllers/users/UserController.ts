@@ -5,7 +5,7 @@ import DeleteUserUseCase from '@useCases/user/DeleteUserUseCase';
 import GetAllUsersUseCase from '@useCases/user/GetAllUsersUseCase';
 import GetUserByIdUseCase from '@useCases/user/GetUserByIdUseCase';
 import UpdateUserUseCase from '@useCases/user/UpdateUserUseCase';
-import { IController } from './IController';
+import { IController } from '../IController';
 
 class UserController implements IController {
   async create(req: Request, res: Response): Promise<void> {

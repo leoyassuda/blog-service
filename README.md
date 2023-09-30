@@ -91,7 +91,11 @@ erDiagram
 
 You can running using node scripts or makefile.
 
+> ⚠️ Remember to set DATABASE URL and PORT in `.env` file.
+
 ### Node
+
+Running from source code:
 
 ```bash
 npm run dev
@@ -103,7 +107,13 @@ or
 npm run watch
 ```
 
-to run using compiled:
+Building application:
+
+```bash
+npm run build
+```
+
+Running from compiled:
 
 ```bash
 npm run start

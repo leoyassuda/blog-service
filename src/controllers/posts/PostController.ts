@@ -5,7 +5,7 @@ import DeletePostUseCase from '@useCases/post/DeletePostUseCase';
 import GetAllPostsUseCase from '@useCases/post/GetAllPostsUseCase';
 import GetPostByIdUseCase from '@useCases/post/GetPostByIdUseCase';
 import UpdatePostUseCase from '@useCases/post/UpdatePostUseCase';
-import { IController } from './IController';
+import { IController } from '@controllers/IController';
 
 class PostController implements IController {
   async create(req: Request, res: Response): Promise<void> {

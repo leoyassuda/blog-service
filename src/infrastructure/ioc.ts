@@ -1,4 +1,3 @@
-import PostController from '@controllers/PostController';
 import Post from '@domains/Post';
 import User from '@domains/User';
 import IRepository from '@repositories/IRepository';
@@ -33,10 +32,6 @@ container.register('UpdatePostUseCase', {
 
 container.register('DeletePostUseCase', {
   useClass: DeletePostUseCase,
-});
-
-container.register('PostController', {
-  useClass: PostController,
 });
 
 export { container };
